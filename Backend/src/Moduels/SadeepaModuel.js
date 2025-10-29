@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const sadeepaSchema = new mongoose.Schema(
+const noteschema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -14,5 +14,5 @@ const sadeepaSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-const sadeepamodel=mongoose.model("sadeepamodel",sadeepaSchema);
-module.exports=sadeepamodel;
+const notemodule=mongoose.model("notemodule",noteschema);
+module.exports=notemodule;
