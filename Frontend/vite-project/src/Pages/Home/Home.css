@@ -1,0 +1,39 @@
+.home_t {
+  text-align: center;
+}
+.h_title {
+  color: brown;
+  font-size: 40px;
+}
+.h_motto {
+  text-decoration: solid;
+  font-size: 20px;
+}
+.add_note {
+  background-color: green; /* green background */
+  color: white; /* white text */
+  font-size: 24px; /* make + larger */
+  width: 50px; /* width of button */
+  height: 50px; /* height of button */
+  border-radius: 50%; /* makes it perfectly round */
+  border: none; /* remove default border */
+  cursor: pointer; /* pointer on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* optional shadow */
+  position: fixed;
+  bottom: 20px; /* distance from bottom */
+  right: 20px; /* distance from right */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add_note:hover {
+  background-color: darkgreen; /* darker on hover */
+  transform: scale(1.1); /* slight zoom on hover */
+}
+.card_container {
+  display: flex; /* horizontal layout */
+  flex-wrap: wrap; /* wrap to next row if not enough space */
+  gap: 15px; /* space between cards */
+}
