@@ -1,6 +1,7 @@
 import React from "react";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -14,8 +15,9 @@ export const Home = () => {
         <br />
         <NoteCard />
       </div>
-
-      <button className="add_note">+</button>
+      <Link to="/addnote">
+        <button className="add_note">+</button>
+      </Link>
     </>
   );
 };
