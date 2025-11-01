@@ -3,10 +3,12 @@ const sadeeparoutes = require("./Routes/SadeepaRoutes.js");
 const dbconnect = require("./config/db_connect.js");
 const dotenv = require("dotenv");
 dotenv.config();
+const cors = require("cors");
 const app = express();
 dbconnect();
 
 // middleware
+app.use(cors());
 app.use(express.json());
 
 app.use("/sadeepa", sadeeparoutes);
