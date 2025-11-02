@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
+  const [notes, setnotes] = useState([]);
+  const [loading, setloading] = useState(true);
+  const [error, seterror] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/sadeepa/viewnotes")
+      .then((response) => {
+        setnotes(response.data);
+        setloading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        seterror("faild to get notes");
+        setloading(false);
+      });
+  }, []);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
   return (
     <>
       <div className="home_t">
@@ -11,9 +31,9 @@ export const Home = () => {
         <h3 className="h_motto">Your Thinks here stay forever</h3>
       </div>
       <div className="card_container">
-        <NoteCard />
-        <br />
-        <NoteCard />
+        {notes.map((note) => (
+          <NoteCard key={note._id} title={note.title} content={note.content} />
+        ))}
       </div>
       <Link to="/addnote">
         <button className="add_note">+</button>
