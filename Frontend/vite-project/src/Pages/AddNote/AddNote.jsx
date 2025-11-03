@@ -1,32 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./AddNote.css";
 
 const AddNote = () => {
+  const [title, setaddtitle] = useState("");
+  const [content, setaddcontent] = useState("");
+  const [message, setmassage] = useState("");
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    if (!title.trim() || !content.trim()) {
+      setmassage("Please fill all fields");
+      return;
+    }
+    try {
+      const res = await axios.post("http://localhost:5000/sadeepa/addnotes", {
+        title,
+        content,
+      });
+      setmassage("✅ Note added successfully!");
+      setaddtitle("");
+      setaddcontent("");
+    } catch (error) {
+      console.error(error);
+      setmassage("❌ Failed to add note. Please try again.");
+    }
+  };
   return (
     <>
       <h1 className="addnote_title">Save Your Thinks From Here</h1>
       <div className="add_nt_form">
-        <form>
+        <form onSubmit={handlesubmit}>
           <table>
-            <tr>
-              <td>title:</td>
-              <td>
-                <input type="text"></input>
-              </td>
-            </tr>
-            <tr>
-              <td>Content:</td>
-              <td>
-                <textarea></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button>Add</button>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>title:</td>
+                <td>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setaddtitle(e.target.value)}
+                  ></input>
+                </td>
+              </tr>
+              <tr>
+                <td>Content:</td>
+                <td>
+                  <textarea
+                    value={content}
+                    onChange={(e) => setaddcontent(e.target.value)}
+                  ></textarea>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button>Add</button>
+                </td>
+                <td>
+                  <Link to={"/"}>
+                    <button className="home_bt">Home</button>
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </form>
+        {message && <p>{message}</p>}
       </div>
     </>
   );
