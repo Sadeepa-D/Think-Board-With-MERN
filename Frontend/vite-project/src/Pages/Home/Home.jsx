@@ -24,6 +24,15 @@ export const Home = () => {
   }, []);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
+
+  const handledelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/sadeepa/deletenotes/${id}`);
+      setnotes(notes.filter((note) => note._id !== id));
+    } catch (error) {
+      console.error("Error Deleting note", error);
+    }
+  };
   return (
     <>
       <div className="home_t">
@@ -32,7 +41,13 @@ export const Home = () => {
       </div>
       <div className="card_container">
         {notes.map((note) => (
-          <NoteCard key={note._id} title={note.title} content={note.content} />
+          <NoteCard
+            key={note._id}
+            id={note._id}
+            title={note.title}
+            content={note.content}
+            ondelete={handledelete}
+          />
         ))}
       </div>
       <Link to="/addnote">
