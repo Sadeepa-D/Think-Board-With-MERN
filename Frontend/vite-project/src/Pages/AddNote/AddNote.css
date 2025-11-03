@@ -1,0 +1,42 @@
+.add_nt_form {
+  display: flex;
+  justify-content: center; /* horizontally center */
+  align-items: center; /* vertically center */
+  height: 70vh; /* full viewport height */
+  text-align: center;
+}
+
+.add_nt_form form {
+  background-color: #f9f9f9;
+  padding: 40px 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add_nt_form input,
+.add_nt_form textarea {
+  width: 250px;
+  padding: 15px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.add_nt_form button {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.add_nt_form button:hover {
+  background-color: darkred;
+}
+.addnote_title {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 40px;
+}
