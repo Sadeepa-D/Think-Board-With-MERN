@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddNote.css";
 
@@ -7,6 +8,8 @@ const AddNote = () => {
   const [title, setaddtitle] = useState("");
   const [content, setaddcontent] = useState("");
   const [message, setmassage] = useState("");
+
+  const navigate = useNavigate();
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -19,12 +22,13 @@ const AddNote = () => {
         title,
         content,
       });
-      setmassage("✅ Note added successfully!");
-      setaddtitle("");
-      setaddcontent("");
+      // setmassage("✅ Note added successfully!");
+      toast.success("Note added ");
+      navigate("/");
     } catch (error) {
       console.error(error);
-      setmassage("❌ Failed to add note. Please try again.");
+      // setmassage(" Failed to add note. Please try again.");
+      toast.error("Failed to add note");
     }
   };
   return (
@@ -57,11 +61,11 @@ const AddNote = () => {
                 <td>
                   <button>Add</button>
                 </td>
-                <td>
+                {/* <td>
                   <Link to={"/"}>
                     <button className="home_bt">Home</button>
                   </Link>
-                </td>
+                </td> */}
               </tr>
             </tbody>
           </table>

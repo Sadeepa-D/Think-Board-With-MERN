@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const Home = () => {
   const [notes, setnotes] = useState([]);
@@ -29,6 +30,7 @@ export const Home = () => {
     try {
       await axios.delete(`http://localhost:5000/sadeepa/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
+      toast.success("Sucessfully deleted");
     } catch (error) {
       console.error("Error Deleting note", error);
     }
