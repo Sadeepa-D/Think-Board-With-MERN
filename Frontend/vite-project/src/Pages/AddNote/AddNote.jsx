@@ -21,7 +21,6 @@ const AddNote = () => {
       const res = await axios.post("http://localhost:5000/sadeepa/addnotes", {
         title,
         content,
-        
       });
       // setmassage("✅ Note added successfully!");
       toast.success("Note added ");
