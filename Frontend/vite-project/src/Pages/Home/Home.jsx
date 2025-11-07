@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard";
+import NoNote from "../../Elements/NoNote";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -42,15 +43,19 @@ export const Home = () => {
         <h3 className="h_motto">Your Thinks stay here forever</h3>
       </div>
       <div className="card_container">
-        {notes.map((note) => (
-          <NoteCard
-            key={note._id}
-            id={note._id}
-            title={note.title}
-            content={note.content}
-            ondelete={handledelete}
-          />
-        ))}
+        {notes.length === 0 ? (
+          <NoNote />
+        ) : (
+          notes.map((note) => (
+            <NoteCard
+              key={note._id}
+              id={note._id}
+              title={note.title}
+              content={note.content}
+              ondelete={handledelete}
+            />
+          ))
+        )}
       </div>
       <Link to="/addnote">
         <button className="add_note">+</button>

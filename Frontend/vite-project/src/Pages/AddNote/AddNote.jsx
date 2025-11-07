@@ -14,13 +14,14 @@ const AddNote = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     if (!title.trim() || !content.trim()) {
-      setmassage("Please fill all fields");
+      toast.error("Reqiured all Fields");
       return;
     }
     try {
       const res = await axios.post("http://localhost:5000/sadeepa/addnotes", {
         title,
         content,
+        
       });
       // setmassage("✅ Note added successfully!");
       toast.success("Note added ");
