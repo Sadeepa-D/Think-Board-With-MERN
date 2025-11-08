@@ -17,10 +17,10 @@ app.use(express.json());
 app.use("/sadeepa", sadeeparoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../frontend/vite-project/dist")));
+  app.use(express.static(path.join(__dirname, "../../Frontend/vite-project/dist")));
 
   app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../frontend/vite-project/dist"));
+    res.sendFile(path.join(__dirname, "../../Frontend/vite-project/dist"));
   });
 }
 app.listen(process.env.PORT, () => {
