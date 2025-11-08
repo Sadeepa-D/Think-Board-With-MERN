@@ -1,45 +1,283 @@
-.add_nt_form {
-  display: flex;
-  justify-content: center; /* horizontally center */
-  align-items: center; /* vertically center */
-  height: 70vh; /* full viewport height */
+/* AddNote.css - Forest Green Dark Theme */
+
+/* Using the same color palette as Home.css */
+:root {
+  --forest-dark: #0a0e0d;
+  --forest-darker: #050706;
+  --forest-green: #2d5016;
+  --forest-accent: #4a7c2d;
+  --forest-bright: #6ba63f;
+  --forest-neon: #7ec850;
+  --text-primary: #e8f5e8;
+  --text-secondary: #b8d4b8;
+  --text-muted: #7a9a7a;
+}
+
+body {
+  /* background: linear-gradient(135deg, var(--forest-darker) 0%, var(--forest-dark) 50%, #0d1410 100%); */
+   /* background: linear-gradient(135deg, var(--forest-darker) 0%, var(--forest-dark) 50%, #0d1410 100%); */
+     background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.addnote_title {
   text-align: center;
+  font-size: 2.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--forest-neon) 0%, var(--forest-bright) 50%, var(--forest-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 3rem auto 2.5rem;
+  padding: 0 1rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(126, 200, 80, 0.3);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(126, 200, 80, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(126, 200, 80, 0.6));
+  }
+}
+
+.add_nt_form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .add_nt_form form {
-  background-color: #f9f9f9;
-  padding: 40px 60px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+  border: 1px solid rgba(106, 166, 63, 0.3);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(126, 200, 80, 0.1),
+    inset 0 1px 0 rgba(126, 200, 80, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
-.add_nt_form input,
+.add_nt_form form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--forest-neon), var(--forest-bright), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.add_nt_form table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1.5rem;
+}
+
+.add_nt_form tbody tr td:first-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--forest-bright);
+  padding-right: 1.5rem;
+  text-align: left;
+  vertical-align: top;
+  padding-top: 0.75rem;
+  width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(126, 200, 80, 0.3);
+}
+
+.add_nt_form input[type="text"],
 .add_nt_form textarea {
-  width: 250px;
-  padding: 15px;
-  margin: 4px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  width: 90%;
+  padding: 1rem 1.25rem;
+  background: rgba(10, 14, 13, 0.6);
+  border: 2px solid rgba(106, 166, 63, 0.3);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 0 rgba(126, 200, 80, 0);
+}
+
+.add_nt_form input[type="text"]:focus,
+.add_nt_form textarea:focus {
+  outline: none;
+  border-color: var(--forest-neon);
+  background: rgba(10, 14, 13, 0.8);
+  box-shadow: 
+    inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 3px rgba(126, 200, 80, 0.2),
+    0 0 20px rgba(126, 200, 80, 0.3);
+}
+
+.add_nt_form input[type="text"]::placeholder,
+.add_nt_form textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.add_nt_form textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
 }
 
 .add_nt_form button {
-  background-color: brown;
+  background: linear-gradient(135deg, var(--forest-bright) 0%, var(--forest-accent) 100%);
   color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  border: 2px solid var(--forest-neon);
+  border-radius: 0.75rem;
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 15px rgba(126, 200, 80, 0.3),
+    0 0 0 0 rgba(126, 200, 80, 0),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.add_nt_form button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
 }
 
 .add_nt_form button:hover {
-  background-color: darkred;
+  background: linear-gradient(135deg, var(--forest-neon) 0%, var(--forest-bright) 100%);
+  transform: translateY(-2px);
+  border-color: var(--forest-bright);
+  box-shadow: 
+    0 8px 25px rgba(126, 200, 80, 0.5),
+    0 0 0 4px rgba(126, 200, 80, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-.addnote_title {
+
+.add_nt_form button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.add_nt_form button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 4px 15px rgba(126, 200, 80, 0.4),
+    0 0 0 4px rgba(126, 200, 80, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.add_nt_form p {
   text-align: center;
-  padding-top: 30px;
-  font-size: 40px;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: rgba(106, 166, 63, 0.1);
+  border: 1px solid rgba(106, 166, 63, 0.3);
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+
+/* Home button styles (commented out in JSX but included for completeness) */
 .home_bt {
-  text-align: right;
+  background: linear-gradient(135deg, rgba(74, 124, 45, 0.8) 0%, rgba(45, 80, 22, 0.8) 100%);
+  color: var(--text-secondary);
+  border: 2px solid rgba(106, 166, 63, 0.4);
+}
+
+.home_bt:hover {
+  background: linear-gradient(135deg, rgba(74, 124, 45, 1) 0%, rgba(45, 80, 22, 1) 100%);
+  color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .addnote_title {
+    font-size: 2rem;
+    margin: 2rem auto 1.5rem;
+  }
+
+  .add_nt_form {
+    padding: 1rem;
+  }
+
+  .add_nt_form form {
+    padding: 2rem 1.5rem;
+  }
+
+  .add_nt_form table {
+    border-spacing: 0 1rem;
+  }
+
+  .add_nt_form tbody tr td:first-child {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    padding-top: 0;
+  }
+
+  .add_nt_form tbody tr td:last-child {
+    display: block;
+    width: 100%;
+  }
+
+  .add_nt_form button {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+
+  .add_nt_form textarea {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .addnote_title {
+    font-size: 1.75rem;
+  }
+
+  .add_nt_form form {
+    padding: 1.5rem 1rem;
+  }
+
+  .add_nt_form tbody tr td:first-child {
+    font-size: 1rem;
+  }
 }

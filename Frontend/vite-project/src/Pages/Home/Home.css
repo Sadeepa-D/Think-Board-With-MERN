@@ -1,39 +1,201 @@
+/* Home.css - Forest Green Dark Theme */
+
+/* Using a dark forest color palette with modern touches */
+:root {
+  --forest-dark: #0a0e0d;
+  --forest-darker: #050706;
+  --forest-green: #2d5016;
+  --forest-accent: #4a7c2d;
+  --forest-bright: #6ba63f;
+  --forest-neon: #7ec850;
+  --text-primary: #e8f5e8;
+  --text-secondary: #b8d4b8;
+  --text-muted: #7a9a7a;
+}
+
+body {
+  /* background: linear-gradient(135deg, var(--forest-darker) 0%, var(--forest-dark) 50%, #0d1410 100%); */
+    background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+
+  min-height: 100vh;
+}
+
 .home_t {
   text-align: center;
+  margin: 3rem 0 2rem;
+  padding: 0 1rem;
 }
+
 .h_title {
-  color: brown;
-  font-size: 40px;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--forest-neon) 0%, var(--forest-bright) 50%, var(--forest-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(126, 200, 80, 0.3);
+  animation: glow 3s ease-in-out infinite alternate;
 }
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(126, 200, 80, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(126, 200, 80, 0.6));
+  }
+}
+
 .h_motto {
-  text-decoration: solid;
-  font-size: 20px;
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.03em;
 }
+
+.card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .add_note {
-  background-color: green; /* green background */
-  color: white; /* white text */
-  font-size: 24px; /* make + larger */
-  width: 50px; /* width of button */
-  height: 50px; /* height of button */
-  border-radius: 50%; /* makes it perfectly round */
-  border: none; /* remove default border */
-  cursor: pointer; /* pointer on hover */
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  background: linear-gradient(135deg, var(--forest-bright) 0%, var(--forest-accent) 100%);
+  color: white;
+  border: 2px solid var(--forest-neon);
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.25rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 
+    0 0 30px rgba(126, 200, 80, 0.4),
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* optional shadow */
-  position: fixed;
-  bottom: 20px; /* distance from bottom */
-  right: 20px; /* distance from right */
-  transition: background-color 0.3s, transform 0.2s;
+  z-index: 1000;
 }
 
 .add_note:hover {
-  background-color: darkgreen; /* darker on hover */
-  transform: scale(1.1); /* slight zoom on hover */
+  background: linear-gradient(135deg, var(--forest-neon) 0%, var(--forest-bright) 100%);
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 
+    0 0 50px rgba(126, 200, 80, 0.6),
+    0 12px 30px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: var(--forest-bright);
 }
-.card_container {
-  display: flex; /* horizontal layout */
-  flex-wrap: wrap; /* wrap to next row if not enough space */
-  gap: 15px; /* space between cards */
+
+.add_note:active {
+  transform: scale(1.05) rotate(90deg);
+}
+
+/* Enhanced NoteCard styles */
+.note_card {
+  background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+  border: 1px solid rgba(106, 166, 63, 0.2);
+  border-radius: 1rem;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(126, 200, 80, 0.1),
+    inset 0 1px 0 rgba(126, 200, 80, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.note_card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--forest-neon), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.note_card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(126, 200, 80, 0.4);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(126, 200, 80, 0.3),
+    0 0 30px rgba(126, 200, 80, 0.2),
+    inset 0 1px 0 rgba(126, 200, 80, 0.2);
+}
+
+.note_card:hover::before {
+  opacity: 1;
+}
+
+/* Loading and error states */
+p {
+  color: var(--text-primary);
+  text-align: center;
+  font-size: 1.25rem;
+  margin-top: 3rem;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--forest-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--forest-accent) 0%, var(--forest-green) 100%);
+  border-radius: 6px;
+  border: 2px solid var(--forest-darker);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--forest-bright) 0%, var(--forest-accent) 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .h_title {
+    font-size: 2.25rem;
+  }
+  
+  .h_motto {
+    font-size: 1.1rem;
+  }
+  
+  .card_container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem 5rem;
+  }
+  
+  .add_note {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    bottom: 2rem;
+    right: 2rem;
+  }
 }
