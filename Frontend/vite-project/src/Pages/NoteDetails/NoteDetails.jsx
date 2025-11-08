@@ -51,7 +51,7 @@ export const NoteDetails = () => {
     }
     setSaving(true);
     try {
-      const res = await api.put(`/updatenotes/${id}`, noteData);
+      const res = await api.put(`/updatenotes/${id}`, Note);
       toast.success("Update Note Sucessfully");
       navigate("/");
     } catch (error) {
