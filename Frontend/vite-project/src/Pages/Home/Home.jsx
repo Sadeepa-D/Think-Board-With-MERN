@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Home.css";
-import NoteCard from "../../Elements/NoteCard";
-import NoNote from "../../Elements/NoNote";
+import NoteCard from "../../Elements/NoteCard/NoteCard";
+import NoNote from "../../Elements/NoNote/NoNote";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
