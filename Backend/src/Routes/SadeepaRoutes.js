@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.get("/viewnotes", getallnotes);
+router.get("/", getallnotes);
 router.post("/addnotes", savenote);
 router.put("/updatenotes/:id", updatenote);
 router.delete("/deletenotes/:id", deletenote);
