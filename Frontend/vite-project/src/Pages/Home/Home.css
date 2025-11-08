@@ -14,6 +14,10 @@
 }
 
 /* Body & Background */
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: linear-gradient(
     145deg,
@@ -22,8 +26,10 @@ body {
   );
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   font-family: "Arial", sans-serif;
-  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Header Section */
@@ -78,6 +84,7 @@ body {
   margin: 0 auto;
   box-sizing: border-box;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* Note Card */
@@ -221,7 +228,7 @@ p {
 @media (max-width: 768px) {
   .home_t {
     margin: 2rem 0 1.5rem;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
 
   .h_title {
@@ -235,14 +242,17 @@ p {
 
   .card_container {
     grid-template-columns: 1fr; /* 1 per row on small tablets/phones */
-    padding: 0 1.25rem 5rem;
+    padding: 0 1rem 5rem;
     gap: 1.5rem;
+    width: 100%;
   }
 
   .note_card {
     padding: 1.75rem 1.5rem;
     min-height: 160px;
     border-radius: 0.875rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   .add_note {
@@ -261,11 +271,13 @@ p {
       rgba(15, 25, 18, 0.98) 0%,
       rgba(10, 20, 13, 1) 100%
     );
+    padding: 0;
+    margin: 0;
   }
 
   .home_t {
     margin: 1.5rem 0 1.25rem;
-    padding: 0 1.25rem;
+    padding: 0 0.875rem;
   }
 
   .h_title {
@@ -280,8 +292,9 @@ p {
   }
 
   .card_container {
-    padding: 0 1rem 5.5rem;
+    padding: 0 0.875rem 5.5rem;
     gap: 1.25rem;
+    width: 100%;
   }
 
   .note_card {
@@ -289,6 +302,9 @@ p {
     min-height: 140px;
     border-radius: 0.75rem;
     border-width: 1.5px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
   }
 
   .note_card:hover {
@@ -300,7 +316,7 @@ p {
     height: 3.5rem;
     font-size: 1.875rem;
     bottom: 1.75rem;
-    right: 1.25rem;
+    right: 1rem;
     border-width: 1.5px;
   }
 
