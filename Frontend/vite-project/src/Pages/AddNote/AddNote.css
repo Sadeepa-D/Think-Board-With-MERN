@@ -114,7 +114,7 @@ body {
   border: 2px solid rgba(106, 166, 63, 0.3);
   border-radius: 0.75rem;
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: inherit;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
