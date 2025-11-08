@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./NoteDetails.css";
+import api from "../../lib/axios.js";
 import toast from "react-hot-toast";
 
 export const NoteDetails = () => {
@@ -16,9 +17,7 @@ export const NoteDetails = () => {
   useEffect(() => {
     const FetchNote = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/sadeepa/viewnotes/${id}`
-        );
+        const res = await api.get(`/viewnotes/${id}`);
         setNote(res.data);
       } catch (error) {
         console.log("fetching error", error);
@@ -35,9 +34,7 @@ export const NoteDetails = () => {
   const handledelete = async () => {
     if (!window.confirm("Are You sure Want to delete Your Think")) return;
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/sadeepa/deletenotes/${id}`
-      );
+      const res = await api.delete(`/deletenotes/${id}`);
       toast.success("Note deleted Sucess");
       navigate("/");
     } catch (error) {
@@ -54,7 +51,7 @@ export const NoteDetails = () => {
     }
     setSaving(true);
     try {
-      await axios.put(`http://localhost:5000/sadeepa/updatenotes/${id}`, Note);
+      const res = await api.put(`/updatenotes/${id}`, noteData);
       toast.success("Update Note Sucessfully");
       navigate("/");
     } catch (error) {

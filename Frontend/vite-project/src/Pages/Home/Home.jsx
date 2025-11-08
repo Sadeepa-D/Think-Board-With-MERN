@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard/NoteCard";
 import NoNote from "../../Elements/NoNote/NoNote";
+import api from "../../lib/axios.js";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -11,9 +12,9 @@ export const Home = () => {
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/sadeepa/viewnotes")
+  useEffect(async () => {
+    const res = await api
+      .get("/viewnotes")
       .then((response) => {
         setnotes(response.data);
         setloading(false);
@@ -35,7 +36,7 @@ export const Home = () => {
       return;
     }
     try {
-      await axios.delete(`http://localhost:5000/sadeepa/deletenotes/${id}`);
+      const res = await api.delete(`/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
       toast.success("Sucessfully deleted");
     } catch (error) {

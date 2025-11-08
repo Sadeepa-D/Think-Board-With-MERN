@@ -1,0 +1,21 @@
+{
+  "name": "think-board-with-mern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix Frontend/vite-project && npm run build --prefix Frontend/vite-project",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sadeepa-D/Think-Board-With-MERN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sadeepa-D/Think-Board-With-MERN/issues"
+  },
+  "homepage": "https://github.com/Sadeepa-D/Think-Board-With-MERN#readme"
+}

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddNote.css";
+import api from "../../lib/axios.js";
 
 const AddNote = () => {
   const [title, setaddtitle] = useState("");
@@ -18,7 +19,7 @@ const AddNote = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:5000/sadeepa/addnotes", {
+      const res = await api.post("/addnotes", {
         title,
         content,
       });
