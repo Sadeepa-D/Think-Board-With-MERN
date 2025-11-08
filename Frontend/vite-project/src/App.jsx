@@ -4,6 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import AddNote from "./Pages/AddNote/AddNote";
 import NoteDetails from "./Pages/NoteDetails/NoteDetails";
+import Footer from "./Elements/Footer/Footer";
+import "./App.css"
+
 const App = () => {
   return (
     <>
@@ -13,6 +16,7 @@ const App = () => {
         <Route path="/addnote" element={<AddNote />}></Route>
         <Route path="/viewnote" element={<NoteDetails />}></Route>
       </Routes>
+      <Footer/>
     </>
   );
 };

@@ -1,0 +1,53 @@
+/* Footer.css */
+.footer {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+  border-top: 1px solid rgba(106, 166, 63, 0.3);
+  box-shadow: 
+    0 -4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(126, 200, 80, 0.1);
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer_text {
+  color: #b8d4b8;
+  font-size: 0.95rem;
+  margin: 0;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.footer_text::before {
+  content: '🌲';
+  margin-right: 0.5rem;
+  filter: drop-shadow(0 0 8px rgba(126, 200, 80, 0.4));
+}
+
+.footer_text::after {
+  content: '🌲';
+  margin-left: 0.5rem;
+  filter: drop-shadow(0 0 8px rgba(126, 200, 80, 0.4));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .footer_text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1rem;
+  }
+
+  .footer_text {
+    font-size: 0.85rem;
+  }
+}
