@@ -1,0 +1,318 @@
+/* NoteDetails.css */
+
+:root {
+  --forest-dark: #0a0e0d;
+  --forest-darker: #050706;
+  --forest-green: #2d5016;
+  --forest-accent: #4a7c2d;
+  --forest-bright: #6ba63f;
+  --forest-neon: #7ec850;
+  --text-primary: #e8f5e8;
+  --text-secondary: #b8d4b8;
+  --text-muted: #7a9a7a;
+  --danger-red: #ef4444;
+  --danger-hover: #dc2626;
+}
+
+.updatenote_title {
+  text-align: center;
+  font-size: 2.75rem;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--forest-neon) 0%,
+    var(--forest-bright) 50%,
+    var(--forest-accent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 3rem auto 2.5rem;
+  padding: 0 1rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(126, 200, 80, 0.3);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(126, 200, 80, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(126, 200, 80, 0.6));
+  }
+}
+
+.update_nt_form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.update_nt_form form {
+  background: linear-gradient(
+    145deg,
+    rgba(20, 30, 23, 0.95) 0%,
+    rgba(15, 25, 18, 0.98) 100%
+  );
+  border: 1px solid rgba(106, 166, 63, 0.3);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(126, 200, 80, 0.1),
+    inset 0 1px 0 rgba(126, 200, 80, 0.1);
+  position: relative;
+  overflow: hidden;
+  width: 500px;
+}
+
+.update_nt_form form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--forest-neon),
+    var(--forest-bright),
+    transparent
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.update_nt_form table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1.5rem;
+}
+
+.update_nt_form tbody tr td:first-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--forest-bright);
+  padding-right: 1.5rem;
+  text-align: left;
+  vertical-align: top;
+  padding-top: 0.75rem;
+  width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(126, 200, 80, 0.3);
+}
+
+.update_nt_form input[type="text"],
+.update_nt_form textarea {
+  width: 90%;
+  padding: 1rem 1.25rem;
+  background: rgba(10, 14, 13, 0.6);
+  border: 2px solid rgba(106, 166, 63, 0.3);
+  border-radius: 0.75rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(126, 200, 80, 0);
+}
+
+.update_nt_form input[type="text"]:focus,
+.update_nt_form textarea:focus {
+  outline: none;
+  border-color: var(--forest-neon);
+  background: rgba(10, 14, 13, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4),
+    0 0 0 3px rgba(126, 200, 80, 0.2), 0 0 20px rgba(126, 200, 80, 0.3);
+}
+
+.update_nt_form textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.button_row {
+  padding-top: 1rem !important;
+  text-align: center;
+}
+
+.button_row td {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.update_btn,
+.delete_btn {
+  flex: 0 1 auto;
+  min-width: 150px;
+  max-width: 200px;
+  border-radius: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid;
+}
+
+.update_btn {
+  margin-right: 1.5rem; /* space to the next button */
+}
+
+.update_btn {
+  background: linear-gradient(
+    135deg,
+    var(--forest-bright) 0%,
+    var(--forest-accent) 100%
+  );
+  color: white;
+  border-color: var(--forest-neon);
+  box-shadow: 0 4px 15px rgba(126, 200, 80, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.update_btn::before,
+.delete_btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.update_btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--forest-neon) 0%,
+    var(--forest-bright) 100%
+  );
+  transform: translateY(-2px);
+  border-color: var(--forest-bright);
+  box-shadow: 0 8px 25px rgba(126, 200, 80, 0.5),
+    0 0 0 4px rgba(126, 200, 80, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.delete_btn {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.9) 0%,
+    rgba(220, 38, 38, 0.9) 100%
+  );
+  color: white;
+  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.delete_btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--danger-red) 0%,
+    var(--danger-hover) 100%
+  );
+  transform: translateY(-2px);
+  border-color: var(--danger-red);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5),
+    0 0 0 4px rgba(239, 68, 68, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.update_btn:hover::before,
+.delete_btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.update_btn:active,
+.delete_btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .updatenote_title {
+    font-size: 2rem;
+    margin: 2rem auto 1.5rem;
+  }
+
+  .update_nt_form {
+    padding: 1rem;
+  }
+
+  .update_nt_form form {
+    padding: 2rem 1.5rem;
+  }
+
+  .update_nt_form table {
+    border-spacing: 0 1rem;
+  }
+
+  .update_nt_form tbody tr td:first-child {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    padding-top: 0;
+  }
+
+  .update_nt_form tbody tr td:last-child {
+    display: block;
+    width: 100%;
+  }
+
+  .button_row td {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .update_btn,
+  .delete_btn {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .update_nt_form textarea {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .updatenote_title {
+    font-size: 1.75rem;
+  }
+
+  .update_nt_form form {
+    padding: 1.5rem 1rem;
+  }
+
+  .update_nt_form tbody tr td:first-child {
+    font-size: 1rem;
+  }
+
+  .update_btn,
+  .delete_btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
