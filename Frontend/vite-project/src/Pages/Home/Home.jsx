@@ -12,19 +12,23 @@ export const Home = () => {
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
 
-  useEffect(async () => {
-    const res = await api
-      .get("/viewnotes")
-      .then((response) => {
+  // FIX 1: Remove 'async' from useEffect callback
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await api.get("/viewnotes");
         setnotes(response.data);
         setloading(false);
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error(err);
-        seterror("faild to get notes");
+        seterror("Failed to get notes");
         setloading(false);
-      });
+      }
+    };
+
+    fetchNotes();
   }, []);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
@@ -36,13 +40,15 @@ export const Home = () => {
       return;
     }
     try {
-      const res = await api.delete(`/deletenotes/${id}`);
+      await api.delete(`/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
-      toast.success("Sucessfully deleted");
+      toast.success("Successfully deleted");
     } catch (error) {
       console.error("Error Deleting note", error);
+      toast.error("Failed to delete note");
     }
   };
+
   return (
     <>
       <div className="home_t">
@@ -70,4 +76,5 @@ export const Home = () => {
     </>
   );
 };
+
 export default Home;
