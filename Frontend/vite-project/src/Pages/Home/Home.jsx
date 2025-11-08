@@ -28,6 +28,12 @@ export const Home = () => {
   if (error) return <p>{error}</p>;
 
   const handledelete = async (id) => {
+    const confrimdelete = window.confirm(
+      "Are you Sure You Want to Remove your Think"
+    );
+    if (!confrimdelete) {
+      return;
+    }
     try {
       await axios.delete(`http://localhost:5000/sadeepa/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
