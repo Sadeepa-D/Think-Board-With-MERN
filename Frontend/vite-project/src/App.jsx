@@ -5,7 +5,7 @@ import Home from "./Pages/Home/Home";
 import AddNote from "./Pages/AddNote/AddNote";
 import NoteDetails from "./Pages/NoteDetails/NoteDetails";
 import Footer from "./Elements/Footer/Footer";
-import "./App.css"
+import "./App.css";
 
 const App = () => {
   return (
@@ -14,9 +14,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/addnote" element={<AddNote />}></Route>
-        <Route path="/viewnote" element={<NoteDetails />}></Route>
+        <Route path="/viewnotes/:id" element={<NoteDetails />}></Route>
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 };
