@@ -5,8 +5,7 @@ import axios from "axios";
 const BASE_URL =
   import.meta.env.MODE === "development"
     ? "http://localhost:5000/sadeepa"
-    : "/api";
-
+    : "https://think-board-with-mern-4.onrender.com/sadeepa"; // ✅ NEW - correct URL
 // Create an axios instance
 const api = axios.create({
   baseURL: BASE_URL,
