@@ -3,11 +3,11 @@ import axios from "axios";
 import "./Home.css";
 import NoteCard from "../../Elements/NoteCard/NoteCard";
 import NoNote from "../../Elements/NoNote/NoNote";
-import api from "../../lib/axios.js";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export const Home = () => {
+  const VITE_URL = import.meta.env.VITE_URL;
   const [notes, setnotes] = useState([]);
   const [loading, setloading] = useState(true);
   const [error, seterror] = useState(null);
@@ -16,7 +16,7 @@ export const Home = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await api.get("/viewnotes");
+        const response = await axios.get(`${VITE_URL}/viewnotes`);
         setnotes(response.data);
         setloading(false);
       } catch (err) {
@@ -34,13 +34,13 @@ export const Home = () => {
 
   const handledelete = async (id) => {
     const confrimdelete = window.confirm(
-      "Are you Sure You Want to Remove your Think"
+      "Are you Sure You Want to Remove your Think",
     );
     if (!confrimdelete) {
       return;
     }
     try {
-      await api.delete(`/deletenotes/${id}`);
+      await api.delete(`${VITE_URL}/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
       toast.success("Successfully deleted");
     } catch (error) {

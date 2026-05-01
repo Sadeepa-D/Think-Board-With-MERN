@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./NoteDetails.css";
-import api from "../../lib/axios.js";
 import toast from "react-hot-toast";
 
 export const NoteDetails = () => {
+  const VITE_URL = import.meta.env.VITE_URL;
   const [Note, setNote] = useState(null);
   const [Loading, setLoading] = useState(true);
   const [Saving, setSaving] = useState(false);
@@ -17,7 +17,7 @@ export const NoteDetails = () => {
   useEffect(() => {
     const FetchNote = async () => {
       try {
-        const res = await api.get(`/viewnotes/${id}`);
+        const res = await axios.get(`${VITE_URL}/viewnotes/${id}`);
         setNote(res.data);
       } catch (error) {
         console.log("fetching error", error);
@@ -34,7 +34,7 @@ export const NoteDetails = () => {
   const handledelete = async () => {
     if (!window.confirm("Are You sure Want to delete Your Think")) return;
     try {
-      const res = await api.delete(`/deletenotes/${id}`);
+      const res = await axios.delete(`${VITE_URL}/deletenotes/${id}`);
       toast.success("Note deleted Sucess");
       navigate("/");
     } catch (error) {
@@ -51,7 +51,7 @@ export const NoteDetails = () => {
     }
     setSaving(true);
     try {
-      const res = await api.put(`/updatenotes/${id}`, Note);
+      const res = await axios.put(`${VITE_URL}/updatenotes/${id}`, Note);
       toast.success("Update Note Sucessfully");
       navigate("/");
     } catch (error) {
