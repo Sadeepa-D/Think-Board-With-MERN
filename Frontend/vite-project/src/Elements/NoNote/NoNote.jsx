@@ -7,17 +7,18 @@ const NoNote = () => {
     <>
       <div className="no_note_container">
         <div className="no_note_glow"></div>
-        
+
         <div className="no_note_icon">
           <Lightbulb size={80} className="no_note_icon_svg" />
         </div>
-        
+
         <h1 className="no_note_title">No Notes Yet</h1>
-        
+
         <p className="no_note_subtitle">
-          Your think board is empty. Start capturing your thoughts, ideas, and memories by creating your first note!
+          Your think board is empty. Start capturing your thoughts, ideas, and
+          memories by creating your first note!
         </p>
-        
+
         <div className="no_note_hint">
           <span>Click the</span>
           <span className="no_note_plus_icon">

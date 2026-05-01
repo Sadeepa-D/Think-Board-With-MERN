@@ -38,7 +38,10 @@ const AddNote = () => {
   return (
     <>
       <h1 className="addnote_title">
-        <FileText size={32} style={{ display: "inline-block", marginRight: "0.5rem" }} />
+        <FileText
+          size={32}
+          style={{ display: "inline-block", marginRight: "0.5rem" }}
+        />
         Save Your Thinks
       </h1>
       <div className="add_nt_form">

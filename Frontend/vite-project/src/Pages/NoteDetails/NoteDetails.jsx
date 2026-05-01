@@ -29,7 +29,7 @@ export const NoteDetails = () => {
     };
     FetchNote();
   }, [id]);
-  
+
   if (Loading) return <div className="loading_text">Loading your note...</div>;
   if (!Note) return <div className="error_text">Note not found</div>;
 
@@ -67,9 +67,9 @@ export const NoteDetails = () => {
   return (
     <>
       <h1 className="updatenote_title">
-        <ArrowLeft 
-          size={28} 
-          className="back_icon" 
+        <ArrowLeft
+          size={28}
+          className="back_icon"
           onClick={() => navigate("/")}
           style={{ cursor: "pointer" }}
         />
@@ -78,37 +78,33 @@ export const NoteDetails = () => {
       <div className="update_nt_form">
         <form onSubmit={handlesave}>
           <div className="form_group">
-            <label className="form_label" htmlFor="title">Title</label>
+            <label className="form_label" htmlFor="title">
+              Title
+            </label>
             <input
               id="title"
               type="text"
               placeholder="Note title..."
               value={Note.title}
-              onChange={(e) =>
-                setNote({ ...Note, title: e.target.value })
-              }
+              onChange={(e) => setNote({ ...Note, title: e.target.value })}
               disabled={Saving}
             />
           </div>
           <div className="form_group">
-            <label className="form_label" htmlFor="content">Content</label>
+            <label className="form_label" htmlFor="content">
+              Content
+            </label>
             <textarea
               id="content"
               placeholder="Note content..."
               value={Note.content}
-              onChange={(e) =>
-                setNote({ ...Note, content: e.target.value })
-              }
+              onChange={(e) => setNote({ ...Note, content: e.target.value })}
               disabled={Saving}
               rows="12"
             />
           </div>
           <div className="button_row">
-            <button
-              type="submit"
-              className="update_btn"
-              disabled={Saving}
-            >
+            <button type="submit" className="update_btn" disabled={Saving}>
               <Save size={20} />
               {Saving ? "Saving..." : "Save Changes"}
             </button>

@@ -9,9 +9,13 @@
 .footer {
   width: 100%;
   padding: 1.5rem 2rem;
-  background: linear-gradient(145deg, rgba(20, 30, 23, 0.95) 0%, rgba(15, 25, 18, 0.98) 100%);
+  background: linear-gradient(
+    145deg,
+    rgba(20, 30, 23, 0.95) 0%,
+    rgba(15, 25, 18, 0.98) 100%
+  );
   border-top: 1px solid rgba(106, 166, 63, 0.3);
-  box-shadow: 
+  box-shadow:
     0 -4px 20px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(126, 200, 80, 0.1);
   text-align: center;
@@ -60,7 +64,8 @@
 }
 
 @keyframes heartbeat {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
