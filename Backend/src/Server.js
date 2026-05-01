@@ -2,29 +2,30 @@ const express = require("express");
 const sadeeparoutes = require("./Routes/SadeepaRoutes.js");
 const dbconnect = require("./config/db_connect.js");
 const dotenv = require("dotenv");
-const path = require("path");
-dotenv.config();
 const cors = require("cors");
+
+dotenv.config();
+
 const app = express();
+
+// Database connection
 dbconnect();
 
-// middleware
-if (process.env.NODE_ENV !== "production") {
-  app.use(cors());
-}
+// Middleware
+app.use(cors());
 app.use(express.json());
 
+// Routes
 app.use("/sadeepa", sadeeparoutes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../../Frontend/vite-project/dist")));
-
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../Frontend/vite-project/dist"));
-  });
-}
-app.listen(process.env.PORT, () => {
-  console.log("Server is running on port 5000");
+// Default route
+app.get("/", (req, res) => {
+  res.send("Server is running...");
 });
 
-// mongodb+srv://sadeedina2002_db_user:3XR3T34MJAr9FPWw@testcluster.lv7ycwo.mongodb.net/?appName=TestCluster
+// Start server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
