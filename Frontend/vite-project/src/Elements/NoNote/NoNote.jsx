@@ -1,4 +1,5 @@
 import React from "react";
+import { Lightbulb, Plus } from "lucide-react";
 import "./NoNote.css";
 
 const NoNote = () => {
@@ -8,7 +9,7 @@ const NoNote = () => {
         <div className="no_note_glow"></div>
         
         <div className="no_note_icon">
-          <span className="no_note_emoji">📝</span>
+          <Lightbulb size={80} className="no_note_icon_svg" />
         </div>
         
         <h1 className="no_note_title">No Notes Yet</h1>
@@ -19,7 +20,9 @@ const NoNote = () => {
         
         <div className="no_note_hint">
           <span>Click the</span>
-          <span className="no_note_plus_icon">+</span>
+          <span className="no_note_plus_icon">
+            <Plus size={20} />
+          </span>
           <span>button to add your first note</span>
         </div>
       </div>

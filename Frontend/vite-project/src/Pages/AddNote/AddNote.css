@@ -44,8 +44,17 @@ body {
   margin: 3rem auto 2.5rem;
   padding: 0 1rem;
   letter-spacing: -0.02em;
-  text-shadow: 0 0 40px rgba(126, 200, 80, 0.3);
   animation: glow 3s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.addnote_title svg {
+  color: var(--forest-neon);
+  filter: drop-shadow(0 0 10px rgba(126, 200, 80, 0.4));
 }
 
 @keyframes glow {
@@ -60,7 +69,7 @@ body {
 /* Form Container */
 .add_nt_form {
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 4rem;
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -110,45 +119,53 @@ body {
   }
 }
 
-/* Form Table */
-.add_nt_form table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 1.5rem;
-  table-layout: fixed; /* ensures proper responsive sizing */
+/* Form Group */
+.form_group {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.add_nt_form tbody tr td:first-child {
+.form_label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--forest-bright);
-  padding-right: 1.5rem;
-  text-align: left;
-  vertical-align: top;
-  padding-top: 0.75rem;
-  width: 120px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-shadow: 0 0 10px rgba(126, 200, 80, 0.3);
+}
+
+.form_label svg {
+  color: var(--forest-neon);
+  opacity: 0.8;
 }
 
 /* Input & Textarea */
 .add_nt_form input[type="text"],
 .add_nt_form textarea {
   width: 100%;
-  max-width: 100%;
   padding: 1rem 1.25rem;
   background: rgba(10, 14, 13, 0.6);
   border: 2px solid rgba(106, 166, 63, 0.3);
   border-radius: 0.75rem;
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow:
     inset 0 2px 8px rgba(0, 0, 0, 0.4),
     0 0 0 0 rgba(126, 200, 80, 0);
   box-sizing: border-box;
+}
+
+.add_nt_form input[type="text"]::placeholder,
+.add_nt_form textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
 }
 
 .add_nt_form input[type="text"]:focus,
@@ -162,20 +179,54 @@ body {
     0 0 20px rgba(126, 200, 80, 0.3);
 }
 
-.add_nt_form input[type="text"]::placeholder,
-.add_nt_form textarea::placeholder {
-  color: var(--text-muted);
-  opacity: 0.6;
+.add_nt_form input[type="text"]:disabled,
+.add_nt_form textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .add_nt_form textarea {
-  min-height: 100px;
   resize: vertical;
   line-height: 1.6;
+  min-height: 120px;
+}
+
+/* Form Actions */
+.form_actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.form_actions a {
+  text-decoration: none;
 }
 
 /* Submit Button */
-.add_nt_form button {
+.submit_btn,
+.home_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.75rem;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 180px;
+}
+
+.submit_btn {
   background: linear-gradient(
     135deg,
     var(--forest-bright) 0%,
@@ -183,40 +234,12 @@ body {
   );
   color: white;
   border: 2px solid var(--forest-neon);
-  border-radius: 0.75rem;
-  padding: 1rem 3rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow:
     0 4px 15px rgba(126, 200, 80, 0.3),
-    0 0 0 0 rgba(126, 200, 80, 0),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-  width: auto;
-  box-sizing: border-box;
 }
 
-.add_nt_form button::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.6s,
-    height 0.6s;
-}
-
-.add_nt_form button:hover {
+.submit_btn:hover {
   background: linear-gradient(
     135deg,
     var(--forest-neon) 0%,
@@ -230,24 +253,121 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.add_nt_form button:hover::before {
+.submit_btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submit_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.submit_btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.submit_btn:hover::before {
   width: 300px;
   height: 300px;
 }
 
-.add_nt_form button:active {
-  transform: translateY(0);
+/* Home Button */
+.home_btn {
+  background: linear-gradient(135deg, rgba(45, 80, 22, 0.9) 0%, rgba(61, 106, 38, 0.9) 100%);
+  color: var(--text-secondary);
+  border: 2px solid var(--forest-accent);
   box-shadow:
-    0 4px 15px rgba(126, 200, 80, 0.4),
-    0 0 0 4px rgba(126, 200, 80, 0.2),
+    0 4px 12px rgba(74, 124, 45, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.home_btn:hover {
+  background: linear-gradient(
+    135deg,
+    var(--forest-accent) 0%,
+    var(--forest-bright) 100%
+  );
+  color: white;
+  transform: translateY(-2px);
+  border-color: var(--forest-bright);
+  box-shadow:
+    0 8px 25px rgba(74, 124, 45, 0.5),
+    0 0 0 3px rgba(74, 124, 45, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Message / Feedback */
-.add_nt_form p {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
+.home_btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .addnote_title {
+    font-size: 2rem;
+    margin: 2rem auto 1.5rem;
+  }
+
+  .add_nt_form {
+    padding: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .add_nt_form form {
+    padding: 2rem;
+  }
+
+  .form_actions {
+    gap: 0.75rem;
+  }
+
+  .submit_btn,
+  .home_btn {
+    flex: 1;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .addnote_title {
+    font-size: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .addnote_title svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .add_nt_form form {
+    padding: 1.5rem;
+  }
+
+  .form_group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form_label {
+    font-size: 0.95rem;
+  }
+
+  .form_actions {
+    flex-direction: column;
+  }
+
+  .submit_btn,
+  .home_btn {
+    width: 100%;
+  }
+}
   border-radius: 0.75rem;
   font-size: 1.1rem;
   font-weight: 500;

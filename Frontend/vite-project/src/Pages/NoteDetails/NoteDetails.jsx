@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./NoteDetails.css";
 import toast from "react-hot-toast";
+import { Save, Trash2, ArrowLeft } from "lucide-react";
 
 export const NoteDetails = () => {
   const VITE_URL = import.meta.env.VITE_URL;
@@ -21,25 +22,26 @@ export const NoteDetails = () => {
         setNote(res.data);
       } catch (error) {
         console.log("fetching error", error);
-        toast.error("Faild to get note");
+        toast.error("Failed to get note");
       } finally {
         setLoading(false);
       }
     };
     FetchNote();
   }, [id]);
-  if (Loading) return <div>Loading note...</div>;
-  // console.log(Note);
+  
+  if (Loading) return <div className="loading_text">Loading your note...</div>;
+  if (!Note) return <div className="error_text">Note not found</div>;
 
   const handledelete = async () => {
-    if (!window.confirm("Are You sure Want to delete Your Think")) return;
+    if (!window.confirm("Are you sure you want to delete this note?")) return;
     try {
-      const res = await axios.delete(`${VITE_URL}/deletenotes/${id}`);
-      toast.success("Note deleted Sucess");
+      await axios.delete(`${VITE_URL}/deletenotes/${id}`);
+      toast.success("Note deleted successfully");
       navigate("/");
     } catch (error) {
-      console.log("Cannt delete note", error);
-      toast.error("Delete Failed");
+      console.log("Cannot delete note", error);
+      toast.error("Delete failed");
     }
   };
 
@@ -51,12 +53,12 @@ export const NoteDetails = () => {
     }
     setSaving(true);
     try {
-      const res = await axios.put(`${VITE_URL}/updatenotes/${id}`, Note);
-      toast.success("Update Note Sucessfully");
+      await axios.put(`${VITE_URL}/updatenotes/${id}`, Note);
+      toast.success("Note updated successfully");
       navigate("/");
     } catch (error) {
       console.log("Note update failed", error);
-      toast.error("Note Update Failed");
+      toast.error("Update failed");
     } finally {
       setSaving(false);
     }
@@ -64,54 +66,71 @@ export const NoteDetails = () => {
 
   return (
     <>
-      <h1 className="updatenote_title">Update Your Think</h1>
+      <h1 className="updatenote_title">
+        <ArrowLeft 
+          size={28} 
+          className="back_icon" 
+          onClick={() => navigate("/")}
+          style={{ cursor: "pointer" }}
+        />
+        Update Your Think
+      </h1>
       <div className="update_nt_form">
-        <form>
-          <table>
-            <tbody>
-              <tr>
-                <td>Title:</td>
-                <td>
-                  <input
-                    type="text"
-                    value={Note.title}
-                    onChange={(e) =>
-                      setNote({ ...Note, title: e.target.value })
-                    }
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Content:</td>
-                <td>
-                  <textarea
-                    value={Note.content}
-                    onChange={(e) =>
-                      setNote({ ...Note, content: e.target.value })
-                    }
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="2" className="button_row">
-                  <button
-                    type="submit"
-                    className="update_btn"
-                    onClick={handlesave}
-                  >
-                    Update
-                  </button>
-                  <button
-                    type="button"
-                    className="delete_btn"
-                    onClick={handledelete}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <form onSubmit={handlesave}>
+          <div className="form_group">
+            <label className="form_label" htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              placeholder="Note title..."
+              value={Note.title}
+              onChange={(e) =>
+                setNote({ ...Note, title: e.target.value })
+              }
+              disabled={Saving}
+            />
+          </div>
+          <div className="form_group">
+            <label className="form_label" htmlFor="content">Content</label>
+            <textarea
+              id="content"
+              placeholder="Note content..."
+              value={Note.content}
+              onChange={(e) =>
+                setNote({ ...Note, content: e.target.value })
+              }
+              disabled={Saving}
+              rows="12"
+            />
+          </div>
+          <div className="button_row">
+            <button
+              type="submit"
+              className="update_btn"
+              disabled={Saving}
+            >
+              <Save size={20} />
+              {Saving ? "Saving..." : "Save Changes"}
+            </button>
+            <button
+              type="button"
+              className="delete_btn"
+              onClick={handledelete}
+              disabled={Saving}
+            >
+              <Trash2 size={20} />
+              Delete
+            </button>
+            <button
+              type="button"
+              className="back_btn"
+              onClick={() => navigate("/")}
+              disabled={Saving}
+            >
+              <ArrowLeft size={20} />
+              Back
+            </button>
+          </div>
         </form>
       </div>
     </>

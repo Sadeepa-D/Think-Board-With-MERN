@@ -1,4 +1,13 @@
 /* NoNote.css */
+
+:root {
+  --forest-bright: #6ba63f;
+  --forest-neon: #7ec850;
+  --forest-accent: #4a7c2d;
+  --text-secondary: #b8d4b8;
+  --text-muted: #7a9a7a;
+}
+
 .no_note_container {
   grid-column: 1 / -1;
   display: flex;
@@ -34,16 +43,23 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.no_note_emoji {
-  font-size: 5rem;
+.no_note_icon_svg {
+  color: var(--forest-neon);
   filter: drop-shadow(0 0 20px rgba(126, 200, 80, 0.4));
-  display: block;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.no_note_container:hover .no_note_icon_svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(126, 200, 80, 0.6));
+  transform: rotate(10deg) scale(1.1);
 }
 
 .no_note_title {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #7ec850 0%, #6ba63f 50%, #4a7c2d 100%);
+  background: linear-gradient(135deg, var(--forest-neon) 0%, var(--forest-bright) 50%, var(--forest-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -54,7 +70,7 @@
 
 .no_note_subtitle {
   font-size: 1.1rem;
-  color: #b8d4b8;
+  color: var(--text-secondary);
   text-align: center;
   margin-bottom: 2rem;
   line-height: 1.6;
@@ -63,30 +79,41 @@
 
 .no_note_hint {
   font-size: 0.95rem;
-  color: #7a9a7a;
+  color: var(--text-muted);
   text-align: center;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   background: rgba(106, 166, 63, 0.1);
   border: 1px solid rgba(106, 166, 63, 0.2);
   border-radius: 2rem;
   margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.no_note_container:hover .no_note_hint {
+  background: rgba(106, 166, 63, 0.15);
+  border-color: rgba(106, 166, 63, 0.4);
 }
 
 .no_note_plus_icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(135deg, #6ba63f 0%, #4a7c2d 100%);
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--forest-bright) 0%, var(--forest-accent) 100%);
   border-radius: 50%;
-  font-size: 1rem;
-  font-weight: 700;
   color: white;
   box-shadow: 0 0 10px rgba(126, 200, 80, 0.4);
+  transition: all 0.3s ease;
+}
+
+.no_note_container:hover .no_note_plus_icon {
+  transform: rotate(90deg) scale(1.15);
+  box-shadow: 0 0 20px rgba(126, 200, 80, 0.6);
 }
 
 /* Animations */
@@ -98,6 +125,57 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .no_note_container {
+    padding: 3rem 1.5rem;
+    min-height: 350px;
+  }
+
+  .no_note_icon_svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .no_note_title {
+    font-size: 1.75rem;
+  }
+
+  .no_note_subtitle {
+    font-size: 1rem;
+    max-width: 400px;
+  }
+
+  .no_note_hint {
+    font-size: 0.9rem;
+    padding: 0.65rem 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
   }
 }
 

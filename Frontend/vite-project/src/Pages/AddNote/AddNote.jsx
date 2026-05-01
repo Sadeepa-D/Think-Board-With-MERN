@@ -1,79 +1,94 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { Save, Home, FileText } from "lucide-react";
 import "./AddNote.css";
 
 const AddNote = () => {
-const VITE_URL = import.meta.env.VITE_URL;
+  const VITE_URL = import.meta.env.VITE_URL;
   const [title, setaddtitle] = useState("");
   const [content, setaddcontent] = useState("");
-  const [message, setmassage] = useState("");
+  const [loading, setloading] = useState(false);
 
   const navigate = useNavigate();
 
   const handlesubmit = async (e) => {
     e.preventDefault();
     if (!title.trim() || !content.trim()) {
-      toast.error("Reqiured all Fields");
+      toast.error("Required all Fields");
       return;
     }
+    setloading(true);
     try {
       const res = await axios.post(`${VITE_URL}/addnotes`, {
         title,
         content,
       });
-      // setmassage("✅ Note added successfully!");
-      toast.success("Note added ");
+      toast.success("Note added successfully!");
       navigate("/");
     } catch (error) {
       console.error(error);
-      // setmassage(" Failed to add note. Please try again.");
       toast.error("Failed to add note");
+    } finally {
+      setloading(false);
     }
   };
+
   return (
     <>
-      <h1 className="addnote_title">Save Your Thinks From Here</h1>
+      <h1 className="addnote_title">
+        <FileText size={32} style={{ display: "inline-block", marginRight: "0.5rem" }} />
+        Save Your Thinks
+      </h1>
       <div className="add_nt_form">
         <form onSubmit={handlesubmit}>
-          <table>
-            <tbody>
-              <tr>
-                <td>title:</td>
-                <td>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setaddtitle(e.target.value)}
-                  ></input>
-                </td>
-              </tr>
-              <tr>
-                <td>Content:</td>
-                <td>
-                  <textarea
-                    value={content}
-                    onChange={(e) => setaddcontent(e.target.value)}
-                  ></textarea>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button>Add</button>
-                </td>
-                {/* <td>
-                  <Link to={"/"}>
-                    <button className="home_bt">Home</button>
-                  </Link>
-                </td> */}
-              </tr>
-            </tbody>
-          </table>
+          <div className="form_group">
+            <label htmlFor="title" className="form_label">
+              <FileText size={18} />
+              Title
+            </label>
+            <input
+              id="title"
+              type="text"
+              placeholder="Enter note title..."
+              value={title}
+              onChange={(e) => setaddtitle(e.target.value)}
+              disabled={loading}
+            />
+          </div>
+
+          <div className="form_group">
+            <label htmlFor="content" className="form_label">
+              <FileText size={18} />
+              Content
+            </label>
+            <textarea
+              id="content"
+              placeholder="Write your thoughts here..."
+              value={content}
+              onChange={(e) => setaddcontent(e.target.value)}
+              disabled={loading}
+              rows="12"
+            ></textarea>
+          </div>
+
+          <div className="form_actions">
+            <button type="submit" className="submit_btn" disabled={loading}>
+              <Save size={20} />
+              {loading ? "Saving..." : "Save Note"}
+            </button>
+            <Link to="/">
+              <button type="button" className="home_btn">
+                <Home size={20} />
+                Back Home
+              </button>
+            </Link>
+          </div>
         </form>
-        {message && <p>{message}</p>}
       </div>
     </>
   );
 };
+
 export default AddNote;

@@ -5,6 +5,7 @@ import NoteCard from "../../Elements/NoteCard/NoteCard";
 import NoNote from "../../Elements/NoNote/NoNote";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Plus } from "lucide-react";
 
 export const Home = () => {
   const VITE_URL = import.meta.env.VITE_URL;
@@ -29,8 +30,8 @@ export const Home = () => {
     fetchNotes();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="loading_text">Loading your thinks...</p>;
+  if (error) return <p className="error_text">{error}</p>;
 
   const handledelete = async (id) => {
     const confrimdelete = window.confirm(
@@ -40,7 +41,7 @@ export const Home = () => {
       return;
     }
     try {
-      await api.delete(`${VITE_URL}/deletenotes/${id}`);
+      await axios.delete(`${VITE_URL}/deletenotes/${id}`);
       setnotes(notes.filter((note) => note._id !== id));
       toast.success("Successfully deleted");
     } catch (error) {
@@ -70,8 +71,10 @@ export const Home = () => {
           ))
         )}
       </div>
-      <Link to="/addnote">
-        <button className="add_note">+</button>
+      <Link to="/addnote" className="add_note_link">
+        <button className="add_note" title="Add a new think">
+          <Plus size={28} />
+        </button>
       </Link>
     </>
   );

@@ -138,6 +138,11 @@ body {
   opacity: 1;
 }
 
+/* Add Note Button Link */
+.add_note_link {
+  text-decoration: none;
+}
+
 /* Add Note Button */
 .add_note {
   position: fixed;
@@ -153,8 +158,6 @@ body {
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
-  font-size: 2.25rem;
-  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -165,24 +168,33 @@ body {
   z-index: 1000;
 }
 
+.add_note svg {
+  transition: all 0.3s ease;
+}
+
 .add_note:hover {
   background: linear-gradient(
     135deg,
     var(--forest-neon) 0%,
     var(--forest-bright) 100%
   );
-  transform: scale(1.15) rotate(90deg);
+  transform: scale(1.15);
   box-shadow: 0 0 50px rgba(126, 200, 80, 0.6), 0 12px 30px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
   border-color: var(--forest-bright);
 }
 
+.add_note:hover svg {
+  transform: rotate(90deg);
+}
+
 .add_note:active {
-  transform: scale(1.05) rotate(90deg);
+  transform: scale(1.05);
 }
 
 /* Loading and error states */
-p {
+.loading_text,
+.error_text {
   color: var(--text-primary);
   text-align: center;
   font-size: 1.25rem;
